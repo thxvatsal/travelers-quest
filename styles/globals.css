@@ -1,5 +1,15 @@
+:root {
+  --backround: #222222;
+  --links: #F4D1AE;
+  --btns: #0D00A4;
+  --text: #FBFEF9;
+}
+
 html,
 body {
+  overflow: hidden;
+  background-color: var(--backround);
+  color: var(--text);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -7,10 +17,15 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--links);
   text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  background-color: var(--btns);
+  color: var(--text);
 }

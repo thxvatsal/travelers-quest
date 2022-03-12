@@ -9,23 +9,46 @@
   </head>
   <body></body>
   <script>
-    var x = document.getElementById('demo');
+    var x = document.getElementById("demo");
     function getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-        x.innerHTML = 'Geolocation is not supported by this browser.'
+        x.innerHTML = "Geolocation is not supported by this browser.";
       }
     }
 
     function showPosition(position) {
-      x.innerHTML =
-        'Latitude: ' +
-        position.coords.latitude +
-        '<br>Longitude: ' +
-        position.coords.longitude
+      //${position.coords.longitude} ${position.coords.latitude}
+      console.log(position)
+      fetch(
+        `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=29.69197%2C76.98448&language=en`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+            "x-rapidapi-key":
+              "3c99947731msh43934abcbfd8b69p1237f3jsnf5ab3a83065b",
+          },
+        }
+      )
+        .then( async (response) => {
+          const res = response;
+          const {results} = await res.json()
+          console.log(results)
+          const add = results.find(add => {
+            if (add.types[0] == "locality") {
+              console.log(add.address_components[0].long_name)
+              return add.address_components[0].long_name
+            }
+          })
+          console.log(add.address_components[0].long_name)
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
-    getLocation()
-    showPosition()
+    getLocation();
+    showPosition();
   </script>
 </html>
