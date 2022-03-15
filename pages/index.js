@@ -151,7 +151,7 @@ export default function Home() {
           <h1 style={{
             textAlign: "center",
             fontSize: "48px"
-          }}>Traveler's Quest</h1>
+          }}>Travelers Quest</h1>
           <p>Aliquip elit ad aute ad officia dolore eiusmod sint laboris sint. Ipsum nisi et anim cupidatat sint commodo incididunt. Magna aute aute sunt exercitation culpa voluptate ex incididunt. Ex aliquip magna quis nisi aliquip proident. Amet est ut officia officia qui veniam est culpa nulla anim.</p>
 
 
