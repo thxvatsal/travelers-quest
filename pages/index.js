@@ -10,17 +10,14 @@ import { Contract, providers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 import Nav from './components/nav'
 import Button from './components/button'
 import Loader from './components/Loader'
 
 
+import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 
-
-import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants";
-
+console.log(">>>>>>>>>>>>>>>>>>", NFT_CONTRACT_ADDRESS)
 
 
 
@@ -30,27 +27,43 @@ export default function Home() {
   const [Signer, setSigner] = useState()
   const [loading, setLoading] = useState(false);
 
+
   const web3ModalRef = useRef()
   console.log(web3ModalRef.current)
 
+
+  // Format error
+  const checkErrorTypeAndNotify = (error) => {
+    if (error.message.includes("reverted")) {
+      toast.error(error.error.message);
+    } else if (
+      error.message.includes(
+        "MetaMask Tx Signature: User denied transaction signature."
+      )
+    ) {
+      toast.error("Transaction cancelled");
+    } else {
+      toast.error(error.message);
+    }
+  };
+
   // getting signer or provider
 
-  const getProviderOrSigner = async (needSigner = false) => {
+  const getProviderOrSigner = async (needSigner = true) => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
-    console.log(2, web3Provider)
-    const { chainId } = await web3Provider.getNetwork()
-    if (chainId !== 4) {
-      window.alert("Change the network to Rinkeby");
-      throw new Error("Change the network to Rinkeby")
-    }
 
+    const { chainId } = await web3Provider.getNetwork()
+    if (chainId !== 80001) {
+      toast("Change the Network to Mumbai")
+      throw new Error("Change the network to mumbai");
+    }
 
     const signer = web3Provider.getSigner()
     console.log(1, signer.getAddress())
     setSigner(await signer.getAddress());
 
-    return web3Provider;
+    return signer;
   }
   const providerOptions = {
     walletconnect: WalletConnectProvider
@@ -59,7 +72,7 @@ export default function Home() {
   const connectWallet = async () => {
     try {
       web3ModalRef.current = new Web3Modal({
-        network: "rinkeby",
+        network: "mumbai",
         providerOptions,
         disableInjectedProvider: false,
       });
@@ -75,6 +88,7 @@ export default function Home() {
   const mintNFT = async (tokenId) => {
     try {
       const signer = await getProviderOrSigner(true);
+
       const TravellContract = new Contract(
         NFT_CONTRACT_ADDRESS,
         NFT_CONTRACT_ABI,
@@ -89,12 +103,11 @@ export default function Home() {
       setLoading(false);
       toast("You successfully minted your X");
 
-    } catch (err) {
-      console.error(err);
-      toast("Some ERROR!!!");
+    } catch (error) {
+      console.error(error);
+      checkErrorTypeAndNotify(error);
     }
   }
-
 
   // useEffecting those functions
   useEffect(() => {
@@ -157,14 +170,11 @@ export default function Home() {
 
           <div>
             Image
-            {!loading ? <button onClick={() => mintNFT(0)}>Mint NFT</button> : <Loader />}
+            {!loading ? <button onClick={() => mintNFT(1)}>Mint NFT</button> : <Loader />}
           </div>
 
         </div>
       </div>
-
-
-
     </div>
   )
 }
