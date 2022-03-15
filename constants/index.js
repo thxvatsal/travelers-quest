@@ -1,0 +1,2 @@
+NFT_CONTRACT_ADDRESS = "fdsfsadfads";
+NFT_CONTRACT_ABI = [];
