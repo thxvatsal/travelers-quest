@@ -1,14 +1,14 @@
 :root {
   --backround: #222222;
-  --links: #F4D1AE;
+  --links: #000;
   --btns: #0D00A4;
   --text: #FBFEF9;
 }
 
 html,
 body {
-  overflow: hidden;
-  background-color: var(--backround);
+  overflow-x: hidden;
+  /* background-color: var(--backround); */
   color: var(--text);
   padding: 0;
   margin: 0;
@@ -17,7 +17,7 @@ body {
 }
 
 a {
-  color: var(--links);
+  /* color: var(--links); */
   text-decoration: none;
 }
 
@@ -26,6 +26,24 @@ a {
 }
 
 button {
-  background-color: var(--btns);
+  /* background-color: var(--btns); */
   color: var(--text);
+}
+
+::-webkit-scrollbar {
+  /* display: none; */
+  background-color: rgba(0, 0, 0, 0);
+  width: 0.5em;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  /* background-color: transparent; */
+    /* border: 1px solid red; */
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
 }

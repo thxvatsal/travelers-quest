@@ -1,20 +1,46 @@
 
 /* Navigation Bar */
-
-.nav {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+.navcont {
+  position: relative;
+  top: 0;
+  left: 0;
   z-index: 100;
-}
+  height: 0;
+  /* border: 1px solid red; */
+  background-color: rgba(255, 255, 255, 0);
 
+}
+.nav {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* z-index: 100; */
+
+  background-color: rgba(255, 255, 255, 0);
+
+}
+.nav a {
+  color: #000;
+}
 .rightnav {
+  /* margin-top: 20px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-  z-index: 100;
+  background-color: rgba(255, 255, 255, 0);
+
+  /* z-index: 100; */
 }
+
+.logo {
+  /* margin-top: 10px; */
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-shadow: 5px 5px 1px rgba(9,49,121,0.3);
+}
+
 .abt {
   font-size: 1.5rem;
 }
@@ -23,42 +49,183 @@
 }
 /* Button */
 .btn {
+  background-image: linear-gradient(19deg, rgba(0,0,0,1) 0%, rgba(0,5,255,1) 0%, rgba(0,245,255,1) 100%);
+
+  background-color: lightblue;
+  width: 200px;
   font-size: 1.5rem;
   padding: 15px;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 0px 5px black;
+  transition: all 0.5s ease-out;
 }
 .btn:hover {
-  background-color: #63A375;
+  /* background-color: green; */
+  box-shadow: 0px 0px 20px green;
+  transform: translateY(-5px);
 }
 .hashbtn {
+  background-image: linear-gradient(19deg, rgba(0,0,0,1) 0%, rgba(0,5,255,1) 0%, rgba(0,245,255,1) 100%);
+
+  width: 200px;
+
   font-size: 1.5rem;
   padding: 15px;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 0px 5px black;
+  /* transition: all 0.5s ; */
 }
 
 .hashbtn:hover {
   background-color: red;
+  box-shadow: 0px 0px 10px red;
+
+  animation: shake 0.3s;
 }
+
+@keyframes shake {
+
+  10% {
+    transform: translateX(3px);
+  }
+  20% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  70% {
+    transform: translateX(5px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+/* Nav End */
+
 
 /* Main Page */
-
+  /* Hero Section */
 .container {
   overflow: hidden;
-  margin: auto auto;
-  padding: 100px;
-  /* width: 70%; */
-  height: calc(100vh - 80px);
+}
+
+.slider {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  opacity: 0.15;
+  background-color: red;
+  display:flex;
+  overflow:visible;
+  animation: slide 10s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100px);
+  }
+  10% {
+    transform: translateX(-200px);
+  }
+  20% {
+    transform: translateX(-300px);
+  }
+  30% {
+    transform: translateX(-400px);
+  }
+  40% {
+    transform: translateX(-500px);
+  }
+  50% {
+    transform: translateX(-600px);
+  }
+  60% {
+    transform: translateX(-500px);
+  }
+  70% {
+    transform: translateX(-400px);
+  }
+  80% {
+    transform: translateX(-300px);
+  }
+  90% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+
+}
+
+.hero {
+  margin: auto;
+  width: 100%;
+  height: 100vh;
+  z-index:9;
+  /* background: rgb(9,49,121); */
+  background: linear-gradient(19deg, rgba(9,49,121,0.7) 0%, rgba(0,212,255,0.7) 43%, rgba(237,255,8,0.7) 87%);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  /* gap: 100px; */
+  padding: 250px;
+  /* color: white; */
+
 }
 
-.container > p{
-  padding: 200px;
+.hero > h1 {
+  font-size: 5rem;
 }
 
+.hero > p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+  /* Hero End */
+
+  /* Section */
+
+.mintbtn {
+  background-image: linear-gradient(19deg, rgba(247,247,247,1) 0%, rgba(255,226,0,1) 0%, rgba(8,245,255,1) 100%);
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+/* Footer */
+
+.footer {
+  background-color: lightgoldenrodyellow;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+}
+
+.footer a {
+  color: #000;
+}

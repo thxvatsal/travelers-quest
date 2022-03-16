@@ -1,0 +1,27 @@
+.section {
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    /* border-bottom: 1px solid black; */
+
+}
+
+.details {
+    color: black;
+}
+
+.details > h2 {
+    width: fit-content;
+    background: -webkit-linear-gradient(19deg, rgba(255,0,0,1) 4%, rgba(255,226,0,1) 39%, rgba(8,255,207,1) 86%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+}
+
+.details > p {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
