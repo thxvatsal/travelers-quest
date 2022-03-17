@@ -19,9 +19,6 @@ import NFTholder from './components/NFTholder';
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 import Footer from './components/Footer';
 
-console.log(">>>>>>>>>>>>>>>>>>", NFT_CONTRACT_ADDRESS)
-
-
 
 export default function Home() {
   console.log(Web3Modal.onClose)
@@ -52,11 +49,18 @@ export default function Home() {
   // getting signer or provider
 
   const getProviderOrSigner = async (needSigner = true) => {
+
+    console.log("PAPAPAAP")
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
+    console.log(web3Provider,":::::::::::::::::::::::::")
+
     const { chainId } = await web3Provider.getNetwork()
-    if (chainId !== 80001) {
+    console.log(">>>>>>>>>>>>>>>" + chainId)
+
+    if (chainId != 80001) {
+      console.log("HEEEE")
       toast("Change the Network to Mumbai")
       throw new Error("Change the network to mumbai");
     }
@@ -82,6 +86,7 @@ export default function Home() {
       setWalletConnected(true);
     } catch (err) {
       console.error(err)
+      checkErrorTypeAndNotify(err);
     }
   }
 
@@ -143,54 +148,60 @@ export default function Home() {
       <div className={styles.navcont}>
         <Nav>
           {
-          !walletConnected ?
-            (<Button className={styles.btn} onClick={connectWallet} text="Connect Wallet" />)
-          :
-            (<Button className={styles.hashbtn} onClick={logout} text={shortenHash(Signer,5,5)} />)
-          
+            !walletConnected ?
+              (<Button className={styles.btn} onClick={connectWallet} text="Connect Wallet" />)
+              :
+              (<Button className={styles.hashbtn} onClick={logout} text={shortenHash(Signer, 5, 5)} />)
+
           }
         </Nav>
       </div>
+      <ToastContainer />
       <div className={styles.container}>
         <div className={styles.hero}>
-          <h1>Traveler's Quest</h1>
+          <h1>Traveler&apos;s Quest</h1>
           <p>Exercitation veniam aliquip velit nulla consectetur laboris adipisicing proident. Deserunt adipisicing magna proident magna nulla. Aliquip excepteur Lorem est et tempor est.</p>
         </div>
         <div className={styles.slider}><img style={{
           // objectFit:"contain",
-          height:"100%",
-          width:"100%"
-        }} src='/agra.jpg'/>
-        <img style={{
-          // objectFit:"contain",
-          height:"100%",
-          width:"100%"
-        }} src='/agra.jpg'/>
-        <img style={{
-          // objectFit:"contain",
-          height:"100%",
-          width:"100%"
-        }} src='/manali.jpg'/>
-        <img style={{
-          // objectFit:"contain",
-          height:"100%",
-          width:"100%"
-        }} src='/manali.jpg'/>
-        <img style={{
-          // objectFit:"contain",
-          height:"100%",
-          width:"100%"
-        }} src='/manali.jpg'/></div>
-        
+          height: "100%",
+          width: "100%"
+        }} src='/agra.jpg' />
+          <img style={{
+            // objectFit:"contain",
+            height: "100%",
+            width: "100%"
+          }} src='/agra.jpg' />
+          <img style={{
+            // objectFit:"contain",
+            height: "100%",
+            width: "100%"
+          }} src='/manali.jpg' />
+          <img style={{
+            // objectFit:"contain",
+            height: "100%",
+            width: "100%"
+          }} src='/manali.jpg' />
+          <img style={{
+            // objectFit:"contain",
+            height: "100%",
+            width: "100%"
+          }} src='/manali.jpg' /></div>
+
       </div>
-     
-      <NFTholder source = '/agra.jpg' city = "New Delhi" nftclaimed = "5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir = "row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text = "Mint" /></NFTholder>
-      <NFTholder source = '/agra.jpg' city = "New Delhi" nftclaimed = "5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir = "row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text = "Mint" /></NFTholder>
-      <NFTholder source = '/agra.jpg' city = "New Delhi" nftclaimed = "5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir = "row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text = "Mint" /></NFTholder>
-      <NFTholder source = '/agra.jpg' city = "New Delhi" nftclaimed = "5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir = "row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text = "Mint" /></NFTholder>
-      <NFTholder source = '/agra.jpg' city = "New Delhi" nftclaimed = "5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir = "row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text = "Mint" /></NFTholder>
+
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={() => mintNFT(0)} text="Mint" />
+      </NFTholder>
+
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
 
       <Footer />
     </div>
   )
 }
+
+
+// 9:61  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities

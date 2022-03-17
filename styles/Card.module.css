@@ -3,6 +3,7 @@
     width: fit-content;
     border-radius: 10px;
     border: 2px solid black;
+
 }
 
 .image {
@@ -11,6 +12,10 @@
     border-width: 2px;
     border-image: -webkit-linear-gradient(19deg, rgba(255,0,0,1) 4%, rgba(255,226,0,1) 39%, rgba(8,255,207,1) 86%) 1;
     /* borderradius: 10px; */
+
+    width: 300px;
+    height: 400px;
+    position: relative;
 }
 
 .details {

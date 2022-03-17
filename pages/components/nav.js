@@ -8,7 +8,7 @@ export default function Nav( props ) {
   return (
     
       <div className={styles.nav}>
-          <Link href='/'><a className={styles.logo}>Traveler's Quest</a></Link>
+          <Link href='/'><a className={styles.logo}>Traveler&apos;s Quest</a></Link>
           <div className={styles.rightnav}>
               <Link href="/about"><a className={styles.abt}>About</a></Link>
               {props.children}
