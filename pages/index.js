@@ -47,7 +47,6 @@ export default function Home() {
   };
 
   // getting signer or provider
-
   const getProviderOrSigner = async (needSigner = true) => {
 
     console.log("PAPAPAAP")
@@ -74,6 +73,7 @@ export default function Home() {
   const providerOptions = {
     walletconnect: WalletConnectProvider
   }
+
   // connecting wallet
   const connectWallet = async () => {
     try {
@@ -89,7 +89,6 @@ export default function Home() {
       checkErrorTypeAndNotify(err);
     }
   }
-
 
   // mint function 
   const mintNFT = async (tokenId) => {
@@ -123,6 +122,7 @@ export default function Home() {
     }
   }, [])
 
+  // hash shortner
   const shortenHash = (hash = '', charLength = 6, postCharLength) => {
     let shortendHash;
     if (postCharLength) {
@@ -135,13 +135,57 @@ export default function Home() {
     }
     return shortendHash;
   };
-
+  // logout func
   const logout = async () => {
     await web3ModalRef.current.clearCachedProvider()
     setWalletConnected(false)
     console.log(2, web3ModalRef)
   }
 
+  //check position
+  // const [ coords, setCoords ] = useState()
+  const checkPosition = async () => {
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((coords) => {
+        console.log(coords)
+        checkAdd(coords)
+      });
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    const checkAdd = async (position) => {
+      console.log(position.coords.latitude)
+      const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
+      const res = await fetch(
+        `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
+        {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+          "x-rapidapi-key":
+            `${key}`,
+          },
+        }
+      )
+      console.log(res)
+      const {results} = await res.json()
+      console.log(results)
+      const add = results.find(add => {
+        if (add.types[0] == "locality") {
+          console.log(add.address_components[0].long_name)
+          return add.address_components[0].long_name
+        }
+      })
+      console.log('address',add.address_components[0].long_name)
+      if (add.address_components[0].long_name === 'Indore') {
+        setLoading(true)
+        await mintNFT(0)
+        setLoading(false)
+      }
+    }
+    // console.log(coords)
+  }
 
   return (
     <div>
@@ -182,18 +226,14 @@ export default function Home() {
             height: "100%",
             width: "100%"
           }} src='/manali.jpg' />
-          <img style={{
-            // objectFit:"contain",
-            height: "100%",
-            width: "100%"
-          }} src='/manali.jpg' /></div>
+        </div>
 
       </div>
 
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={() => mintNFT(0)} text="Mint" />
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse">{!loading ? <Button className={styles.mintbtn} onClick={() => mintNFT(0)} text="Mint" /> : <Button className={styles.mintbtn} onClick={() => {}} text="Loading" />}
       </NFTholder>
 
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
+      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={checkPosition} text="Mint" /></NFTholder>
       <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
       <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
       <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
