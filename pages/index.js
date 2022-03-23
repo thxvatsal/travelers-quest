@@ -12,12 +12,33 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Nav from './components/nav'
 import Button from './components/button'
-import Loader from './components/Loader'
 import NFTholder from './components/NFTholder';
 
 
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 import Footer from './components/Footer';
+
+
+const items = [
+  {
+    source: '/agra.jpg',
+    city: "New Delhi",
+    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
+    nftclaimed: 10,
+  },
+  {
+    source: '/agra.jpg',
+    city: "Agra",
+    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
+    nftclaimed: 10,
+  },
+  {
+    source: '/manali.jpg',
+    city: "Manali",
+    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
+    nftclaimed: 10,
+  },
+]
 
 
 export default function Home() {
@@ -33,6 +54,10 @@ export default function Home() {
 
   // Format error
   const checkErrorTypeAndNotify = (error) => {
+    if (error.hasOwnProperty('data')) {
+      toast.error(error.data.message)
+      return
+    }
     if (error.message.includes("reverted")) {
       toast.error(error.error.message);
     } else if (
@@ -48,24 +73,15 @@ export default function Home() {
 
   // getting signer or provider
   const getProviderOrSigner = async (needSigner = true) => {
-
-    console.log("PAPAPAAP")
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    console.log(web3Provider,":::::::::::::::::::::::::")
-
     const { chainId } = await web3Provider.getNetwork()
-    console.log(">>>>>>>>>>>>>>>" + chainId)
 
     if (chainId != 80001) {
-      console.log("HEEEE")
-      toast("Change the Network to Mumbai")
-      throw new Error("Change the network to mumbai");
+      throw new Error("Change Your Network To Mumbai");
     }
-
     const signer = web3Provider.getSigner()
-    console.log(1, signer.getAddress())
     setSigner(await signer.getAddress());
 
     return signer;
@@ -94,23 +110,19 @@ export default function Home() {
   const mintNFT = async (tokenId) => {
     try {
       const signer = await getProviderOrSigner(true);
-
       const TravellContract = new Contract(
         NFT_CONTRACT_ADDRESS,
         NFT_CONTRACT_ABI,
         signer
       );
-
       const tx = await TravellContract.mint(tokenId);
-
       setLoading(true);
       await tx.wait();
 
       setLoading(false);
-      toast("You successfully minted your X");
+      toast("You successfully minted your NFT");
 
     } catch (error) {
-      console.error(error);
       checkErrorTypeAndNotify(error);
     }
   }
@@ -144,8 +156,8 @@ export default function Home() {
 
   //check position
   // const [ coords, setCoords ] = useState()
-  const checkPosition = async () => {
-    
+  const checkPosition = async (tokenId) => {
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((coords) => {
         console.log(coords)
@@ -157,34 +169,39 @@ export default function Home() {
     const checkAdd = async (position) => {
       console.log(position.coords.latitude)
       const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
-      const res = await fetch(
-        `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
-        {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-          "x-rapidapi-key":
-            `${key}`,
-          },
+      try {
+        const res = await fetch(
+          `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+              "x-rapidapi-key":
+                `${key}`,
+            },
+          }
+        );
+        console.log(res)
+        const { results } = await res.json()
+        console.log(results)
+        const add = results.find(add => {
+          if (add.types[0] == "locality") {
+            console.log(add.address_components[0].long_name)
+            return add.address_components[0].long_name
+          }
+        })
+        console.log('address', add.address_components[0].long_name)
+        if (add.address_components[0].long_name === 'Indore') {
+          setLoading(true)
+          await mintNFT(tokenId)
+          setLoading(false)
         }
-      )
-      console.log(res)
-      const {results} = await res.json()
-      console.log(results)
-      const add = results.find(add => {
-        if (add.types[0] == "locality") {
-          console.log(add.address_components[0].long_name)
-          return add.address_components[0].long_name
-        }
-      })
-      console.log('address',add.address_components[0].long_name)
-      if (add.address_components[0].long_name === 'Indore') {
-        setLoading(true)
-        await mintNFT(0)
-        setLoading(false)
+      }
+      catch (error) {
+        console.log(error)
+        checkErrorTypeAndNotify(error)
       }
     }
-    // console.log(coords)
   }
 
   return (
@@ -230,14 +247,54 @@ export default function Home() {
 
       </div>
 
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse">{!loading ? <Button className={styles.mintbtn} onClick={() => mintNFT(0)} text="Mint" /> : <Button className={styles.mintbtn} onClick={() => {}} text="Loading" />}
-      </NFTholder>
 
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={checkPosition} text="Mint" /></NFTholder>
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
-      <NFTholder source='/agra.jpg' city="New Delhi" nftclaimed="5" details="Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui." flexdir="row-reverse"><Button className={styles.mintbtn} onClick={console.log('Hello')} text="Mint" /></NFTholder>
+      {
+        items.map((item, index) => {
+          return (
+            index % 2 != 0 ? (
+              <NFTholder
+                flexdir="row-reverse"
+                key={index}
+                source={item.source}
+                city={item.city}
+                details={item.details}
+                nftclaimed={item.nftclaimed}
+              >{
+                  !loading ? (
+                    <Button
+                      className={styles.mintbtn}
+                      text="Mint"
+                      onClick={() => checkPosition(index)} />
+                  ) : (
+                    <Button className={styles.mintbtn} text="Loading...." />
+                  )
 
+                }
+              </NFTholder>
+            ) : (
+              <NFTholder
+                flexdir="row"
+                key={index}
+                source={item.source}
+                city={item.city}
+                details={item.details}
+                nftclaimed={item.nftclaimed}
+              >{
+                  !loading ? (
+                    <Button
+                      className={styles.mintbtn}
+                      text="Mint"
+                      onClick={() => checkPosition(index)} />
+                  ) : (
+                    <Button className={styles.mintbtn} text="Loading" />
+                  )
+                }
+              </NFTholder>
+            )
+
+          )
+        })
+      }
       <Footer />
     </div>
   )
