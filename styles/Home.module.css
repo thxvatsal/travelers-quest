@@ -34,11 +34,21 @@
   /* z-index: 100; */
 }
 
+.rightnav > a {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
 .logo {
   /* margin-top: 10px; */
   font-size: 2.2rem;
   font-weight: 800;
-  text-shadow: 5px 5px 1px rgba(9,49,121,0.3);
+  /* text-shadow: 5px 5px 1px rgba(9,49,121,0.3); */
+  transition: all 0.5s ease-in;
+}
+.logo:hover {
+  text-decoration: none;
+  transform: scale(1.1);
 }
 
 .abt {

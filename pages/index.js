@@ -8,12 +8,13 @@ import { Contract, providers } from "ethers";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index";
 
 import Nav from "./components/nav";
 import Button from "./components/button";
 import NFTholder from "./components/NFTholder";
-
-import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index";
+import Loader from "./components/Loader"
+import Link from "next/link";
 import Footer from "./components/Footer";
 import Head from 'next/head';
 
@@ -245,7 +246,10 @@ export default function Home() {
             !walletConnected ?
               (<Button className={styles.btn} onClick={connectWallet} text="Connect Wallet" />)
               :
-              (<Button className={styles.hashbtn} onClick={logout} text={shortenHash(Signer, 5, 5)} />)
+              (<>
+                <Link href="/profile"><a className={styles.abt}>Profile</a></Link>  
+                <Button className={styles.hashbtn} onClick={logout} text={shortenHash(Signer, 5, 5)} />
+              </>)
 
           }
         </Nav>
@@ -265,7 +269,7 @@ export default function Home() {
             // objectFit:"contain",
             height: "100%",
             width: "100%"
-          }} src='/agra.jpg' />
+          }} src='/delhi.jpg' />
           <img style={{
             // objectFit:"contain",
             height: "100%",
@@ -275,7 +279,7 @@ export default function Home() {
             // objectFit:"contain",
             height: "100%",
             width: "100%"
-          }} src='/manali.jpg' />
+          }} src='/jaipur.jpg' />
         </div>
 
       </div>

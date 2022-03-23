@@ -7,9 +7,9 @@ export default function Footer( props ) {
     <div>
         <div className={styles.footer}>
           <Link href='/'><a className={styles.logo}>Traveler&apos;s Quest</a></Link>
+              {props.children}
           <div className={styles.rightnav}>
               <Link href="/about"><a className={styles.abt}>About</a></Link>
-              {props.children}
           </div>
       </div>
     </div>

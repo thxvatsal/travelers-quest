@@ -6,6 +6,8 @@ import Button from "./components/button";
 import Image from "next/image";
 
 import styles from '../styles/About.module.css'
+import Link from "next/link";
+import Footer from "./components/Footer";
 
 export default function About() {
   return (
@@ -27,10 +29,69 @@ export default function About() {
       </section>
       <section className={styles.about}>
         <h2>Our Team</h2>
-        <div className={styles.member}>
-          <div className={styles.img}><Image src='/agra.jpg' layout="fill"/></div>
+        
+        <div className={styles.team}>
+          
+          <div className={styles.member}>
+            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <span className={styles.name}>Vatsal Awadhiya</span>
+            <span className={styles.job}>Frontend</span>
+            <span className={styles.links}>
+              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+            </span>
+          </div>
+        
+          <div className={styles.member}>
+            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <span className={styles.name}>Vatsal Awadhiya</span>
+            <span className={styles.job}>Frontend</span>
+            <span className={styles.links}>
+              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+            </span>
+          </div>
+
+          <div className={styles.member}>
+            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <span className={styles.name}>Vatsal Awadhiya</span>
+            <span className={styles.job}>Frontend</span>
+            <span className={styles.links}>
+              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+            </span>
+          </div>
+
+          <div className={styles.member}>
+            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <span className={styles.name}>Vatsal Awadhiya</span>
+            <span className={styles.job}>Frontend</span>
+            <span className={styles.links}>
+              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+            </span>
+          </div>
+
+          <div className={styles.member}>
+            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <span className={styles.name}>Vatsal Awadhiya</span>
+            <span className={styles.job}>Frontend</span>
+            <span className={styles.links}>
+              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+            </span>
+          </div>
+
+
         </div>
+        <span className={styles.wagmi}>#WAGMI🚀</span>
       </section>
+      <Footer />
     </>
   );
 }

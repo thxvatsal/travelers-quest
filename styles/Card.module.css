@@ -10,7 +10,7 @@
 .image {
     /* border-radius: 10px; */
     border-style: solid;
-    border-width: 2px;
+    border-width: 3px;
     border-image: -webkit-linear-gradient(19deg, rgba(255,0,0,1) 4%, rgba(255,226,0,1) 39%, rgba(8,255,207,1) 86%) 1;
     /* borderradius: 10px; */
     box-shadow: 5px 5px 10px black, 5px 5px 10px black;
