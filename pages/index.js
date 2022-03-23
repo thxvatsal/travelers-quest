@@ -1,4 +1,3 @@
-
 import styles from '../styles/Home.module.css'
 import { useRef, useState, useEffect } from 'react'
 
