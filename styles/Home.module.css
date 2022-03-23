@@ -50,7 +50,7 @@
 /* Button */
 .btn {
   background-image: linear-gradient(19deg, rgba(0,0,0,1) 0%, rgba(0,5,255,1) 0%, rgba(0,245,255,1) 100%);
-
+  text-align: center;
   background-color: lightblue;
   width: 200px;
   font-size: 1.5rem;
@@ -67,7 +67,7 @@
 }
 .hashbtn {
   background-image: linear-gradient(19deg, rgba(0,0,0,1) 0%, rgba(0,5,255,1) 0%, rgba(0,245,255,1) 100%);
-
+  text-align: center;
   width: 200px;
 
   font-size: 1.5rem;
@@ -208,12 +208,16 @@
   /* Section */
 
 .mintbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
   background-image: linear-gradient(19deg, rgba(247,247,247,1) 0%, rgba(255,226,0,1) 0%, rgba(8,245,255,1) 100%);
   outline: none;
   border: none;
   font-size: 2rem;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border-radius: 10px;
   cursor: pointer;
 }

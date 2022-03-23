@@ -1,20 +1,10 @@
-.navCont {
-    /* margin-top: 20px ; */
-    /* display: block; */
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    height: 0;
-    /* margin-right: 250px; */
+.hero {
+    display: flex;
 }
 
-.mintbtn {
-    background-image: linear-gradient(19deg, rgba(247,247,247,1) 0%, rgba(255,226,0,1) 0%, rgba(8,245,255,1) 100%);
-    outline: none;
-    border: none;
-    font-size: 2rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 10px;
+.img {
+    display: none;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
 }
