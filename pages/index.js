@@ -1,14 +1,23 @@
+<<<<<<< HEAD
 import styles from '../styles/Home.module.css'
 import { useRef, useState, useEffect } from 'react'
 
 import Web3Modal from "web3modal"
 import WalletConnectProvider from '@walletconnect/web3-provider'
+=======
+import styles from "../styles/Home.module.css";
+import { useRef, useState, useEffect } from "react";
+
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+>>>>>>> 7755a1fb7576e266a11b832f6ebe8bd13d824b82
 
 import { Contract, providers } from "ethers";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+<<<<<<< HEAD
 import Nav from './components/nav'
 import Button from './components/button'
 import NFTholder from './components/NFTholder';
@@ -18,46 +27,81 @@ import Loader from './components/Loader'
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 import Footer from './components/Footer';
 import Head from 'next/head';
+=======
+import Nav from "./components/nav";
+import Button from "./components/button";
+import NFTholder from "./components/NFTholder";
+>>>>>>> 7755a1fb7576e266a11b832f6ebe8bd13d824b82
 
+import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index";
+import Footer from "./components/Footer";
 
 const items = [
   {
-    source: '/agra.jpg',
-    city: "New Delhi",
-    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
-    nftclaimed: 10,
-  },
-  {
-    source: '/agra.jpg',
+    source: "/Traveler-quest-images/agra.jpg",
     city: "Agra",
-    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
+    details:
+      "Agra is a popular tourist destination as it is home to one of the 7 wonders of the world, the Taj Mahal. It is a sneak peek into the architectural history and legacy of the Mughal empire with two other UNESCO World Heritage Sites Agra Fort and Fatehpur Sikri. History, architecture, romance all together create the magic of Agra, and hence, makes for a must-visit for anyone living in or visiting India.",
     nftclaimed: 10,
   },
   {
-    source: '/manali.jpg',
+    source: "/Traveler-quest-images/delhi.jpg",
+    city: "New Delhi",
+    details:
+      "A symbol of the India's rich past and thriving present. The capital of India, Delhi is a cosmopolitan city with a historic old Delhi and the modern New Delhi. From historical monuments to crowded shopping malls, from an extensive network of the modern metro system to Delhi University campus, Dilli has multiple personalities and is considered to be the city with a heart.",
+    nftclaimed: 20,
+  },
+  {
+    source: "/Traveler-quest-images/manali.jpg",
     city: "Manali",
-    details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
+    details:
+      "A gift of the Himalayas to the world, Manali is a beautiful township nestled in the picturesque Beas River valley. It is a rustic enclave known for its cool climate and snow-capped mountains. Manali cocooned in its rich cultural heritage and age-old traditions is now one of the most popular destinations of India. The place is a classic blend of peace and tranquility which makes it a haven for nature lovers and adventure enthusiasts, who want to get off the main tourist trails and experience nature up close.",
     nftclaimed: 10,
   },
-]
-
+  {
+    source: "/Traveler-quest-images/mumbai.jpg",
+    city: "Mumbai",
+    details:
+      "Mumbai, often referred as “the city of dreams” for all the right reasons, is a place that every traveller must visit. Mumbai presents a unique experience that is unmatched to any other destination. Mumbai is the city of aspirations, power, wealth, glamour and nightlife along with stretches of shimmering beaches, caves, magnificent architecture, religious sites and a mouth-watering cuisine. With all this exciting and varied recreational opportunities Mumbai offers a wholesome holiday experience.",
+    nftclaimed: 10,
+  },
+  {
+    source: "/Traveler-quest-images/goa.jpg",
+    city: "Goa",
+    details:
+      "Goa is India's smallest state and unlike any other, known for its endless beaches, stellar nightlife, eclectic seafood, world-heritage listed architecture. Goa has one of the best nightlife in India with trendy bars, beach shacks, elegant cafes and many clubs and discotheques.In Old Goa, the beautiful Basilica of Bom Jesus is a UNESCO World Heritage Site and a fine example of baroque architecture.",
+    nftclaimed: 10,
+  },
+  {
+    source: "/Traveler-quest-images/jaipur.jpg",
+    city: "Jaipur",
+    details:
+      "Jaipur holds the distinction of being the first planned city of India. Renowned globally for its coloured gems, the capital city of Rajasthan combines the allure of its ancient history with all the advantages of a metropolis. Spend your days exploring City Palace, Hawa Mahal, and Amber and Jaigarh forts. And if you're looking for a unique souvenir, head to one of the bazaars, where you can pick up a pair of camel-leather slippers.",
+    nftclaimed: 15,
+  },
+  {
+    source: "/Traveler-quest-images/ethernals.jpg",
+    city: "Ethernals",
+    details:
+      "Supercharge yourself for ETHernals: the first ETHIndia Online hackathon of 2022! You are a part of the amazing community who are changing the world for better. On the way to becoming an ETHernal: You have become a better developer, have an Unforgettable Digital Experience in the ETHernals Metaverse and probably have exclusive Schwags to show off.",
+    nftclaimed: 10,
+  },
+];
 
 export default function Home() {
-  console.log(Web3Modal.onClose)
-  const [walletConnected, setWalletConnected] = useState(false)
-  const [Signer, setSigner] = useState()
+  console.log(Web3Modal.onClose);
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [Signer, setSigner] = useState();
   const [loading, setLoading] = useState(false);
 
-
-  const web3ModalRef = useRef()
-  console.log(web3ModalRef.current)
-
+  const web3ModalRef = useRef();
+  console.log(web3ModalRef.current);
 
   // Format error
   const checkErrorTypeAndNotify = (error) => {
-    if (error.hasOwnProperty('data')) {
-      toast.error(error.data.message)
-      return
+    if (error.hasOwnProperty("data")) {
+      toast.error(error.data.message);
+      return;
     }
     if (error.message.includes("reverted")) {
       toast.error(error.error.message);
@@ -77,19 +121,19 @@ export default function Home() {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    const { chainId } = await web3Provider.getNetwork()
+    const { chainId } = await web3Provider.getNetwork();
 
     if (chainId != 80001) {
       throw new Error("Change Your Network To Mumbai");
     }
-    const signer = web3Provider.getSigner()
+    const signer = web3Provider.getSigner();
     setSigner(await signer.getAddress());
 
     return signer;
-  }
+  };
   const providerOptions = {
-    walletconnect: WalletConnectProvider
-  }
+    walletconnect: WalletConnectProvider,
+  };
 
   // connecting wallet
   const connectWallet = async () => {
@@ -102,12 +146,12 @@ export default function Home() {
       await getProviderOrSigner();
       setWalletConnected(true);
     } catch (err) {
-      console.error(err)
+      console.error(err);
       checkErrorTypeAndNotify(err);
     }
-  }
+  };
 
-  // mint function 
+  // mint function
   const mintNFT = async (tokenId) => {
     try {
       const signer = await getProviderOrSigner(true);
@@ -122,26 +166,25 @@ export default function Home() {
 
       // setLoading(false);
       toast("You successfully minted your NFT");
-
     } catch (error) {
       checkErrorTypeAndNotify(error);
     }
-  }
+  };
 
   // useEffecting those functions
   useEffect(() => {
     if (!walletConnected) {
       connectWallet();
     }
-  }, [])
+  }, []);
 
   // hash shortner
-  const shortenHash = (hash = '', charLength = 6, postCharLength) => {
+  const shortenHash = (hash = "", charLength = 6, postCharLength) => {
     let shortendHash;
     if (postCharLength) {
       shortendHash =
         hash.slice(0, charLength) +
-        '...' +
+        "..." +
         hash.slice(hash.length - postCharLength, hash.length);
     } else {
       shortendHash = hash.slice(0, charLength);
@@ -150,26 +193,25 @@ export default function Home() {
   };
   // logout func
   const logout = async () => {
-    await web3ModalRef.current.clearCachedProvider()
-    setWalletConnected(false)
-    console.log(2, web3ModalRef)
-  }
+    await web3ModalRef.current.clearCachedProvider();
+    setWalletConnected(false);
+    console.log(2, web3ModalRef);
+  };
 
   //check position
   // const [ coords, setCoords ] = useState()
   const checkPosition = async (tokenId) => {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((coords) => {
-        console.log(coords)
-        checkAdd(coords)
+        console.log(coords);
+        checkAdd(coords);
       });
     } else {
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
     const checkAdd = async (position) => {
-      console.log(position.coords.latitude)
-      const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
+      console.log(position.coords.latitude);
+      const key = process.env.NEXT_PUBLIC_RAPID_API_KEY;
       try {
         setLoading(true)
         const res = await fetch(
@@ -178,19 +220,19 @@ export default function Home() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-              "x-rapidapi-key":
-                `${key}`,
+              "x-rapidapi-key": `${key}`,
             },
           }
         );
-        console.log(res)
-        const { results } = await res.json()
-        console.log(results)
-        const add = results.find(add => {
+        console.log(res);
+        const { results } = await res.json();
+        console.log(results);
+        const add = results.find((add) => {
           if (add.types[0] == "locality") {
-            console.log(add.address_components[0].long_name)
-            return add.address_components[0].long_name
+            console.log(add.address_components[0].long_name);
+            return add.address_components[0].long_name;
           }
+<<<<<<< HEAD
         })
         console.log('address', add.address_components[0].long_name)
         if (add.address_components[0].long_name) {
@@ -198,58 +240,88 @@ export default function Home() {
           await mintNFT(tokenId)
           // setLoading(false)
           setLoading(false)
+=======
+        });
+        console.log("address", add.address_components[0].long_name);
+        if (add.address_components[0].long_name === "Indore") {
+          setLoading(true);
+          await mintNFT(tokenId);
+          setLoading(false);
+>>>>>>> 7755a1fb7576e266a11b832f6ebe8bd13d824b82
         }
+      } catch (error) {
+        console.log(error);
+        checkErrorTypeAndNotify(error);
       }
-      catch (error) {
-        console.log(error)
-        checkErrorTypeAndNotify(error)
-      }
-    }
-  }
+    };
+  };
 
   return (
     <div>
       <div className={styles.navcont}>
         <Nav>
-          {
-            !walletConnected ?
-              (<Button className={styles.btn} onClick={connectWallet} text="Connect Wallet" />)
-              :
-              (<Button className={styles.hashbtn} onClick={logout} text={shortenHash(Signer, 5, 5)} />)
-
-          }
+          {!walletConnected ? (
+            <Button
+              className={styles.btn}
+              onClick={connectWallet}
+              text="Connect Wallet"
+            />
+          ) : (
+            <Button
+              className={styles.hashbtn}
+              onClick={logout}
+              text={shortenHash(Signer, 5, 5)}
+            />
+          )}
         </Nav>
       </div>
       <ToastContainer />
       <div className={styles.container}>
         <div className={styles.hero}>
           <h1>Traveler&apos;s Quest</h1>
-          <p>Exercitation veniam aliquip velit nulla consectetur laboris adipisicing proident. Deserunt adipisicing magna proident magna nulla. Aliquip excepteur Lorem est et tempor est.</p>
+          <p>
+            Exercitation veniam aliquip velit nulla consectetur laboris
+            adipisicing proident. Deserunt adipisicing magna proident magna
+            nulla. Aliquip excepteur Lorem est et tempor est.
+          </p>
         </div>
-        <div className={styles.slider}><img style={{
-          // objectFit:"contain",
-          height: "100%",
-          width: "100%"
-        }} src='/agra.jpg' />
-          <img style={{
-            // objectFit:"contain",
-            height: "100%",
-            width: "100%"
-          }} src='/agra.jpg' />
-          <img style={{
-            // objectFit:"contain",
-            height: "100%",
-            width: "100%"
-          }} src='/manali.jpg' />
-          <img style={{
-            // objectFit:"contain",
-            height: "100%",
-            width: "100%"
-          }} src='/manali.jpg' />
+        <div className={styles.slider}>
+          <img
+            style={{
+              // objectFit:"contain",
+              height: "100%",
+              width: "100%",
+            }}
+            src="/agra.jpg"
+          />
+          <img
+            style={{
+              // objectFit:"contain",
+              height: "100%",
+              width: "100%",
+            }}
+            src="/agra.jpg"
+          />
+          <img
+            style={{
+              // objectFit:"contain",
+              height: "100%",
+              width: "100%",
+            }}
+            src="/manali.jpg"
+          />
+          <img
+            style={{
+              // objectFit:"contain",
+              height: "100%",
+              width: "100%",
+            }}
+            src="/manali.jpg"
+          />
         </div>
-
       </div>
 
+<<<<<<< HEAD
 
       {
         items.map((item, index) => {
@@ -298,10 +370,52 @@ export default function Home() {
           )
         })
       }
+=======
+      {items.map((item, index) => {
+        return index % 2 != 0 ? (
+          <NFTholder
+            flexdir="row-reverse"
+            key={index}
+            source={item.source}
+            city={item.city}
+            details={item.details}
+            nftclaimed={item.nftclaimed}
+          >
+            {!loading ? (
+              <Button
+                className={styles.mintbtn}
+                text="Mint"
+                onClick={() => checkPosition(index)}
+              />
+            ) : (
+              <Button className={styles.mintbtn} text="Loading...." />
+            )}
+          </NFTholder>
+        ) : (
+          <NFTholder
+            flexdir="row"
+            key={index}
+            source={item.source}
+            city={item.city}
+            details={item.details}
+            nftclaimed={item.nftclaimed}
+          >
+            {!loading ? (
+              <Button
+                className={styles.mintbtn}
+                text="Mint"
+                onClick={() => checkPosition(index)}
+              />
+            ) : (
+              <Button className={styles.mintbtn} text="Loading" />
+            )}
+          </NFTholder>
+        );
+      })}
+>>>>>>> 7755a1fb7576e266a11b832f6ebe8bd13d824b82
       <Footer />
     </div>
-  )
+  );
 }
-
 
 // 9:61  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
