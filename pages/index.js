@@ -1,4 +1,3 @@
-
 import styles from '../styles/Home.module.css'
 import { useRef, useState, useEffect } from 'react'
 
@@ -13,10 +12,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Nav from './components/nav'
 import Button from './components/button'
 import NFTholder from './components/NFTholder';
+import Loader from './components/Loader'
 
 
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 import Footer from './components/Footer';
+import Head from 'next/head';
 
 
 const items = [
@@ -116,10 +117,10 @@ export default function Home() {
         signer
       );
       const tx = await TravellContract.mint(tokenId);
-      setLoading(true);
+      // setLoading(true);
       await tx.wait();
 
-      setLoading(false);
+      // setLoading(false);
       toast("You successfully minted your NFT");
 
     } catch (error) {
@@ -170,6 +171,7 @@ export default function Home() {
       console.log(position.coords.latitude)
       const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
       try {
+        setLoading(true)
         const res = await fetch(
           `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
           {
@@ -191,9 +193,10 @@ export default function Home() {
           }
         })
         console.log('address', add.address_components[0].long_name)
-        if (add.address_components[0].long_name === 'Indore') {
-          setLoading(true)
+        if (add.address_components[0].long_name) {
+          // setLoading(true)
           await mintNFT(tokenId)
+          // setLoading(false)
           setLoading(false)
         }
       }
@@ -253,26 +256,6 @@ export default function Home() {
           return (
             index % 2 != 0 ? (
               <NFTholder
-                flexdir="row-reverse"
-                key={index}
-                source={item.source}
-                city={item.city}
-                details={item.details}
-                nftclaimed={item.nftclaimed}
-              >{
-                  !loading ? (
-                    <Button
-                      className={styles.mintbtn}
-                      text="Mint"
-                      onClick={() => checkPosition(index)} />
-                  ) : (
-                    <Button className={styles.mintbtn} text="Loading...." />
-                  )
-
-                }
-              </NFTholder>
-            ) : (
-              <NFTholder
                 flexdir="row"
                 key={index}
                 source={item.source}
@@ -286,7 +269,27 @@ export default function Home() {
                       text="Mint"
                       onClick={() => checkPosition(index)} />
                   ) : (
-                    <Button className={styles.mintbtn} text="Loading" />
+                    <Loader />
+                  )
+
+                }
+              </NFTholder>
+            ) : (
+              <NFTholder
+                flexdir="row-reverse"
+                key={index}
+                source={item.source}
+                city={item.city}
+                details={item.details}
+                nftclaimed={item.nftclaimed}
+              >{
+                  !loading ? (
+                    <Button
+                      className={styles.mintbtn}
+                      text="Mint"
+                      onClick={() => checkPosition(index)} />
+                  ) : (
+                    <Loader />
                   )
                 }
               </NFTholder>
