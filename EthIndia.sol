@@ -6,27 +6,23 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract TravelGasless is ERC2771Context, ERC1155, Ownable { 
-    // 0x49530D2952a8CF46d3362fd2813d407a1bFb234D    1 try
-    uint256[] supplies = [50,50,50];
-    uint256[] minted = [0,0,0,0];
+contract TravelQuest is ERC2771Context, ERC1155, Ownable {  
+    uint256[] supplies = [50,50,50,50,50,50,150];
+    uint256[] minted = [0,0,0,0,0,0,0];
     mapping(uint256 => mapping(address => bool)) public member;
 
     constructor(address trustedForwarder) 
-        ERC1155("https://ipfs.io/ipfs/QmZNkDgivjBkXBSG5zVjt3vk6KfTzzSBowCRRoqMvcNahp/{id}.json")
+        ERC1155("https://ipfs.io/ipfs/QmVjF1MykXoZGABaHqSTpxrVzb2jxczwbqen52k18tLFMk/{id}.json")
         ERC2771Context(trustedForwarder) 
         {
         }
 
-    // function setURI(string memory newuri) public onlyOwner {
-    //     _setURI(newuri);
-    // }
-
+    // to Put NFT to Opensea
      function uri(uint256 _tokenId) override public view returns (string memory) {
         require(_tokenId <= supplies.length-1,"NFT does not exist");
         return string(
         abi.encodePacked(
-            "https://ipfs.io/ipfs/QmZNkDgivjBkXBSG5zVjt3vk6KfTzzSBowCRRoqMvcNahp/",
+            "https://ipfs.io/ipfs/QmVjF1MykXoZGABaHqSTpxrVzb2jxczwbqen52k18tLFMk/",
             Strings.toString(_tokenId),
             ".json"
         )
@@ -61,5 +57,5 @@ contract TravelGasless is ERC2771Context, ERC1155, Ownable {
     function _msgData() internal view override(Context, ERC2771Context) returns (bytes calldata){
         return ERC2771Context._msgData();
     }
-}
 
+}
