@@ -81,7 +81,7 @@ export default function Home() {
   // console.log(Web3Modal.onClose)
   const [walletConnected, setWalletConnected] = useState(false)
   const [Signer, setSigner] = useState()
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
 
   const web3ModalRef = useRef()
@@ -154,9 +154,11 @@ export default function Home() {
 
   // mint function 
   const mintNFT = async (tokenId) => {
-    setLoading(true);
+    setLoading(tokenId);
     try {
+
       const signer = await getProviderOrSigner(true);
+
       const TravellContract = new Contract(
         NFT_CONTRACT_ADDRESS,
         NFT_CONTRACT_ABI,
@@ -170,7 +172,7 @@ export default function Home() {
     } catch (error) {
       checkErrorTypeAndNotify(error);
     }
-    setLoading(false);
+    setLoading();
   }
 
   useEffect(() => {
@@ -320,7 +322,7 @@ export default function Home() {
                 details={item.details}
                 nftclaimed={item.nftclaimed}
               >{
-                  !loading ? (
+                  loading != index ? (
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
@@ -328,7 +330,6 @@ export default function Home() {
                   ) : (
                     <Loader />
                   )
-
                 }
               </NFTholder>
             ) : (
@@ -340,7 +341,7 @@ export default function Home() {
                 details={item.details}
                 nftclaimed={item.nftclaimed}
               >{
-                  !loading ? (
+                  loading != index ? (
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
