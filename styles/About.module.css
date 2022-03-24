@@ -1,20 +1,102 @@
-.navCont {
-    /* margin-top: 20px ; */
-    /* display: block; */
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    height: 0;
-    /* margin-right: 250px; */
+.hero {
+    color: black;
+    margin-top: 80px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.sect {
+    margin-top: 20px;
+    padding: 10px 100px;
 }
 
-.mintbtn {
-    background-image: linear-gradient(19deg, rgba(247,247,247,1) 0%, rgba(255,226,0,1) 0%, rgba(8,245,255,1) 100%);
-    outline: none;
+.sect > h2 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.sect > p {
+    font-size: 1.8rem;
+    padding: 20px;
+}
+
+
+/* Team section */
+.about {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.wagmi {
+    margin: 20px;
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+.about > h2 {
+    font-size: 3rem;
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+
+}
+.member {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid red; */
     border: none;
-    font-size: 2rem;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), -5px -5px 0px rgba(255, 255, 255, 1);
+}
+.img {
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    /* display: none; */
+    margin-bottom: 15px;
+    overflow: hidden;
+    height: 300px;
+    width: 300px;
+}
+.name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: -webkit-linear-gradient(19deg, rgba(255,0,0,1) 0%, rgba(255,226,0,1) 60%, rgba(8,255,207,1) 75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.links {
+    font-size: 1.2rem;
     font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 10px;
+}
+
+.job {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.twitter {
+    color: #1c9bf1;
+}
+.github {
+    color: black;
+}
+.linkedin {
+    color: #086bc2;
 }
