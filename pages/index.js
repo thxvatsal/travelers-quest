@@ -289,22 +289,22 @@ export default function Home() {
           // objectFit:"contain",
           height: "100%",
           width: "100%"
-        }} src='/agra.jpg' />
+        }} src='/agra.jpg' alt="slider" />
           <img style={{
             // objectFit:"contain",
             height: "100%",
             width: "100%"
-          }} src='/delhi.jpg' />
+          }} src='/delhi.jpg' alt="slider" />
           <img style={{
             // objectFit:"contain",
             height: "100%",
             width: "100%"
-          }} src='/manali.jpg' />
+          }} src='/manali.jpg' alt="slider" />
           <img style={{
             // objectFit:"contain",
             height: "100%",
             width: "100%"
-          }} src='/jaipur.jpg' />
+          }} src='/jaipur.jpg' alt="slider" />
         </div>
 
       </div>
