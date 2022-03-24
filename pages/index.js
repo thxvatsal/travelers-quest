@@ -18,6 +18,9 @@ import NFTholder from './components/NFTholder';
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from "../constants/index"
 import Footer from './components/Footer';
 
+import { Biconomy } from "@biconomy/mexa";
+
+let TravellContract;
 
 const items = [
   {
@@ -42,14 +45,15 @@ const items = [
 
 
 export default function Home() {
-  console.log(Web3Modal.onClose)
+
+  // console.log(Web3Modal.onClose)
   const [walletConnected, setWalletConnected] = useState(false)
   const [Signer, setSigner] = useState()
   const [loading, setLoading] = useState(false);
 
 
   const web3ModalRef = useRef()
-  console.log(web3ModalRef.current)
+  // console.log(web3ModalRef.current)
 
 
   // Format error
@@ -71,10 +75,15 @@ export default function Home() {
     }
   };
 
+  let biconomy;
   // getting signer or provider
   const getProviderOrSigner = async (needSigner = true) => {
     const provider = await web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
+    // const web3Provider = new providers.Web3Provider(provider);
+
+    biconomy = new Biconomy(provider, { apiKey: process.env.NEXT_PUBLIC_BICONOMY_API, debug: true });
+
+    const web3Provider = new providers.Web3Provider(biconomy);
 
     const { chainId } = await web3Provider.getNetwork()
 
@@ -106,21 +115,49 @@ export default function Home() {
     }
   }
 
+
+
   // mint function 
   const mintNFT = async (tokenId) => {
     try {
       const signer = await getProviderOrSigner(true);
-      const TravellContract = new Contract(
-        NFT_CONTRACT_ADDRESS,
-        NFT_CONTRACT_ABI,
-        signer
-      );
-      const tx = await TravellContract.mint(tokenId);
-      setLoading(true);
-      await tx.wait();
+      // const TravellContract = new Contract(
+      //   NFT_CONTRACT_ADDRESS,
+      //   NFT_CONTRACT_ABI,
+      //   signer
+      // );
 
-      setLoading(false);
-      toast("You successfully minted your NFT");
+      biconomy.onEvent(biconomy.READY, async () => {
+        console.log("BINOMY IS READY");
+        TravellContract = new Contract(
+          NFT_CONTRACT_ADDRESS,
+          NFT_CONTRACT_ABI,
+          signer
+        );
+
+        console.log(">>>>>>>>>>>>>", TravellContract)
+
+        const tx = await TravellContract.mint(tokenId);
+        setLoading(true);
+        await tx.wait();
+
+        setLoading(false);
+        toast("You successfully minted your NFT");
+
+      }).onEvent(biconomy.ERROR, (error, message) => {
+        console.log("BINOMY ERROR", error, message)
+      });
+
+
+
+
+
+      // const tx = await TravellContract.mint(tokenId);
+      // setLoading(true);
+      // await tx.wait();
+
+      // setLoading(false);
+      // toast("You successfully minted your NFT");
 
     } catch (error) {
       checkErrorTypeAndNotify(error);
@@ -132,6 +169,17 @@ export default function Home() {
     if (!walletConnected) {
       connectWallet();
     }
+
+    // biconomy.onEvent(biconomy.READY, () => {
+    //   console.log("BINOMY IS READY")
+    //   if (!walletConnected) {
+    //     connectWallet();
+    //   }
+    // }).onEvent(biconomy.ERROR, (error, message) => {
+    //   console.log("BINOMY ERROR", error, message)
+    // });
+
+
   }, [])
 
   // hash shortner
@@ -169,6 +217,9 @@ export default function Home() {
     const checkAdd = async (position) => {
       console.log(position.coords.latitude)
       const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
+
+      console.log("DFSADFADSFADSFADSFAs", key);
+
       try {
         const res = await fetch(
           `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
@@ -183,7 +234,7 @@ export default function Home() {
         );
         console.log(res)
         const { results } = await res.json()
-        console.log(results)
+        console.log(results, ">>>>>>>>>>>>>>>> RESUELTSSSSS")
         const add = results.find(add => {
           if (add.types[0] == "locality") {
             console.log(add.address_components[0].long_name)
@@ -206,6 +257,7 @@ export default function Home() {
 
   return (
     <div>
+
       <div className={styles.navcont}>
         <Nav>
           {
@@ -217,12 +269,23 @@ export default function Home() {
           }
         </Nav>
       </div>
+
       <ToastContainer />
+
+
+
+
+
       <div className={styles.container}>
         <div className={styles.hero}>
           <h1>Traveler&apos;s Quest</h1>
           <p>Exercitation veniam aliquip velit nulla consectetur laboris adipisicing proident. Deserunt adipisicing magna proident magna nulla. Aliquip excepteur Lorem est et tempor est.</p>
         </div>
+
+
+
+
+
         <div className={styles.slider}><img style={{
           // objectFit:"contain",
           height: "100%",
@@ -264,7 +327,7 @@ export default function Home() {
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
-                      onClick={() => checkPosition(index)} />
+                      onClick={() => mintNFT(index)} />
                   ) : (
                     <Button className={styles.mintbtn} text="Loading...." />
                   )
@@ -284,7 +347,7 @@ export default function Home() {
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
-                      onClick={() => checkPosition(index)} />
+                      onClick={() => mintNFT(index)} />
                   ) : (
                     <Button className={styles.mintbtn} text="Loading" />
                   )
