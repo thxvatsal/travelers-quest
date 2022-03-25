@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
-import Nav from './components/nav'
 import { NFT_CONTRACT_ADDRESS } from '../constants'
+
+import styles from '../styles/profile.module.css'
+
+import Nav from './components/nav'
+import Loader from './components/Loader';
+import { toast, ToastContainer } from 'react-toastify';
 
 const endpoint = `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`;
 
@@ -8,6 +13,7 @@ const endpoint = `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUB
 export default function Profile() {
 
   const [nfts, setNfts] = useState();
+  const [ loading, setLoading ] = useState(true)
 
 
   // function to get tokenID of NFT owned by user
@@ -72,8 +78,11 @@ export default function Profile() {
       let results = await getNFTsMetadata(data.ownedNfts);
       // console.log("NFTs@@@@@@@@@@@@@@@@@@@@@@", results);
       setNfts(results);
+      setLoading(false)
+
     } else {
       console.log("NO NFTS FOUND");
+      toast("No NFT found :(")
     }
   };
 
@@ -82,13 +91,16 @@ export default function Profile() {
   useEffect(() => {
     // get userAccount from localStorage
     const userAccount = localStorage.getItem('userAccount');
+    setLoading(true)
     fetchNFTs(userAccount, NFT_CONTRACT_ADDRESS);
+    // setLoading(false)
   }, [])
 
 
   const imagesObject = {
     'New Delhi': "./delhi.jpg",
     'Agra': "./agra.jpg",
+    'Mumbai': "./mumbai.jpg"
   }
 
 
@@ -96,17 +108,29 @@ export default function Profile() {
   return (
     <div>
       <Nav />
-      {
-        nfts && nfts.map((nft, index) => {
-          return (
-            <div style={{ background: "red" }} key={index}>
-              <h1>{nft.name}</h1>
-              <p>{nft['description']}</p>
-              <img src={imagesObject[nft.name]} alt="nft" />
-            </div>
+      <ToastContainer />
+      <div className={styles.container}>
+          <span>Your NFT's 🎉</span>
+          <div className={styles.inner}>
+      { 
+        loading ? <Loader /> 
+        :
+          nfts && nfts.map((nft, index) => {
+            return (
+              <div className={styles.card} key={index}>
+                {/* <p className={styles.desc}>{nft['description']}</p> */}
+                <img className={styles.nft} src={imagesObject[nft.name]} alt="nft" />
+                <span className={styles.name}>{nft.name}</span>
+                {/* <details className={styles.carousel}>
+                  <summary>Description</summary>
+                  <p>{nft['description']}</p>
+                </details> */}
+              </div>
           )
         })
       }
+      </div>
+      </div>
     </div>
   )
 }

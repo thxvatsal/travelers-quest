@@ -1,6 +1,6 @@
 .hero {
     color: black;
-    margin-top: 80px;
+    margin-top: 40px;
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -34,17 +34,17 @@
     padding: 50px;
 }
 
-.wagmi {
-    margin: 20px;
-    font-size: 2.5rem;
-    font-weight: 900;
-}
-
 .about > h2 {
     font-size: 3rem;
 }
 
+.teamdes {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
 .team {
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -99,4 +99,22 @@
 }
 .linkedin {
     color: #086bc2;
+}
+
+.contract {
+    margin-top: 50px;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: rgba(0,212,255,1);
+}
+
+.contract > a {
+    color: black;
+}
+
+.wagmi {
+    margin-top: 40px;
+    /* margin-bottom: 20px; */
+    font-size: 3rem;
+    font-weight: 900;
 }

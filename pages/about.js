@@ -1,5 +1,6 @@
 import React from "react";
 
+import {NFT_CONTRACT_ADDRESS} from "../constants"
 import Nav from "./components/nav";
 import NFTholder from "./components/NFTholder";
 import Button from "./components/button";
@@ -10,76 +11,79 @@ import Link from "next/link";
 import Footer from "./components/Footer";
 
 export default function About() {
+  const contractLink = `https://mumbai.polygonscan.com/address/${NFT_CONTRACT_ADDRESS}`
   return (
     <>
       <Nav />
       <section className={styles.hero}>
         <div className={styles.sect}>
-          <h2>What is Traveler&apos;s Quest?</h2>
+          <h2>What is Traveler&apos;s Quest? 🧐</h2>
           <p>
-            Amet pariatur excepteur Lorem ea ullamco anim sunt adipisicing dolor laboris ut. Lorem ipsum enim deserunt incididunt exercitation magna proident fugiat occaecat labore adipisicing sunt enim. Velit pariatur est tempor elit ullamco in sunt laborum commodo anim commodo incididunt enim nulla. Pariatur ea irure velit in velit sint ut incididunt. Dolor nostrud tempor est aliqua incididunt nisi proident enim.
+          Traveler's quest is a project that adds a digital proof as a sign of a memory of being in that place. We have NFTs available and can only be minted if you are in that particular place and the way we do it is by having the geolocation value. <br />
+          Traveling has always been fascinating and a fun adventure to have and now with traveler quest's feature we could also add capabilities of private access communities and much more that comes with integration of NFTs.
           </p>
         </div>
         <div className={styles.sect}>
-          <h2>Why we built it?</h2>
+          <h2>Why we built it? 🚀</h2>
           <p>
-            Labore consectetur id est duis sint sit labore deserunt ea elit. Proident nisi duis fugiat dolor veniam occaecat ut ea. Duis labore est duis mollit nulla excepteur et ad magna. Id nostrud in elit ut in aliqua nisi nostrud tempor. Ea est exercitation esse fugiat sunt sunt irure et reprehenderit dolore dolor. Occaecat quis velit duis mollit in velit adipisicing velit tempor cupidatat sit excepteur.
+          Whenever we travel, we remember the amazing experiences we've had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler's quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
+          But hey, That's not where Traveler's quest ends. To reward you for your love for traveling, we have a special title "Travel ninja" and its perks for the crazy travels who would able to Mint all the NFTs first.
           </p>
         </div>
       </section>
       <section className={styles.about}>
-        <h2>Our Team</h2>
-        
+        <h2>Our Team 🫂</h2>
+        <span className={styles.teamdes}>The journey of building with this beautiful has been the most blissful, the efforts, passion and drive of each and every member drives the other.</span>
         <div className={styles.team}>
-          
+          {/* Vatsal */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
+            <div className={styles.img}><Image src='/team/Vatsal.jpg' height="400px" width="400px" /></div>
             <span className={styles.name}>Vatsal Awadhiya</span>
-            <span className={styles.job}>Frontend</span>
+            <span className={styles.job}>Frontend 🎨</span>
             <span className={styles.links}>
               <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
               <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
               <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-        
+          {/* Aayush */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
-            <span className={styles.name}>Vatsal Awadhiya</span>
-            <span className={styles.job}>Frontend</span>
+            <div className={styles.img}><Image src='/team/Aayush.jpg' height="400px" width="400px" /></div>
+            <span className={styles.name}>Aayush Gupta</span>
+            <span className={styles.job}>Smart Contract Developer ✏️</span>
             <span className={styles.links}>
               <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
               <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
               <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-
+          {/* Anish */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
-            <span className={styles.name}>Vatsal Awadhiya</span>
-            <span className={styles.job}>Frontend</span>
+            <div className={styles.img}><Image src='/team/Anish.png' height="400px" width="400px" /></div>
+            <span className={styles.name}>Anish Jain</span>
+            <span className={styles.job}>Backend 🛠️</span>
             <span className={styles.links}>
               <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
               <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
               <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-
+          {/* Abbas */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
-            <span className={styles.name}>Vatsal Awadhiya</span>
-            <span className={styles.job}>Frontend</span>
+            <div className={styles.img}><Image src='/team/abbas2.jpg' height="400px" width="400px" /></div>
+            <span className={styles.name}>Abbas Khan</span>
+            <span className={styles.job}>Content Writing 📜</span>
             <span className={styles.links}>
               <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
               <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
               <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-
+          {/* Yash */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/agra.jpg' height="400px" width="300px" /></div>
-            <span className={styles.name}>Vatsal Awadhiya</span>
-            <span className={styles.job}>Frontend</span>
+            <div className={styles.img}><Image src='/team/yash4.jpg' height="400px" width="400px" /></div>
+            <span className={styles.name}>Yash Solanki</span>
+            <span className={styles.job}>UI Design 🖌️</span>
             <span className={styles.links}>
               <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
               <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
@@ -90,6 +94,7 @@ export default function About() {
 
         </div>
         <span className={styles.wagmi}>#WAGMI🚀</span>
+        <span className={styles.contract}>Contract Address 📄 : <Link href={contractLink}><a target="_blank">{NFT_CONTRACT_ADDRESS}</a></Link></span>
       </section>
       <Footer />
     </>

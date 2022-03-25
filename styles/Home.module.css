@@ -200,7 +200,7 @@
   justify-content: center;
   align-items: center;
   padding: 250px;
-  /* color: white; */
+  color: black;
 
 }
 
@@ -235,6 +235,7 @@
 /* Footer */
 
 .footer {
+  margin-top: 40px;
   background-color: lightgoldenrodyellow;
   display: flex;
   justify-content: space-around;

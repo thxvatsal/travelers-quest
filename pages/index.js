@@ -197,12 +197,11 @@ export default function Home() {
   // logout func
   const logout = async () => {
     await web3ModalRef.current.clearCachedProvider()
+    localStorage.setItem('userAccount', '')
     setWalletConnected(false)
     console.log(2, web3ModalRef)
   }
 
-  //check position
-  // const [ coords, setCoords ] = useState()
   const checkPosition = async (tokenId) => {
 
     if (navigator.geolocation) {
@@ -258,7 +257,6 @@ export default function Home() {
 
   return (
     <div>
-
       <div className={styles.navcont}>
         <Nav>
           {
@@ -275,14 +273,10 @@ export default function Home() {
 
       <ToastContainer />
 
-
-
-
-
       <div className={styles.container}>
         <div className={styles.hero}>
           <h1>Traveler&apos;s Quest</h1>
-          <p>Exercitation veniam aliquip velit nulla consectetur laboris adipisicing proident. Deserunt adipisicing magna proident magna nulla. Aliquip excepteur Lorem est et tempor est.</p>
+          <p>Let the quest to travel and exploring the world take a big leap into the another dimension with the support of NFTs and community. Showcase your achievements, exploration and get more closer with people who share similar interests and craziness all at one Place </p>
         </div>
 
         <div className={styles.slider}><img style={{
