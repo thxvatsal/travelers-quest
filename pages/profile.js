@@ -6,6 +6,7 @@ import styles from '../styles/profile.module.css'
 import Nav from './components/nav'
 import Loader from './components/Loader';
 import { toast, ToastContainer } from 'react-toastify';
+import Link from 'next/link';
 
 const endpoint = `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`;
 
@@ -52,11 +53,12 @@ export default function Profile() {
           )
           const jsonData = await response.json();
           console.log(jsonData, ">>>>>>>>>>>>")
-          console.log("metadata", jsonData.metadata);
+          console.log("metadata", jsonData.metadata, jsonData.id.tokenId);
           const b = {
             name: jsonData.metadata.name,
             description: jsonData.metadata.description,
             image: jsonData.media[0].raw,
+            id: jsonData.id.tokenId.charAt(3),
           }
           a.push(b);
           // results.push(data.metadata);
@@ -83,6 +85,7 @@ export default function Profile() {
     } else {
       console.log("NO NFTS FOUND");
       toast("No NFT found :(")
+      setLoading(false)
     }
   };
 
@@ -100,7 +103,10 @@ export default function Profile() {
   const imagesObject = {
     'New Delhi': "./delhi.jpg",
     'Agra': "./agra.jpg",
-    'Mumbai': "./mumbai.jpg"
+    'Mumbai': "./mumbai.jpg",
+    'Manali' : "./manali.jpg",
+    'Jaipur': "./jaipur.jpg",
+    'Goa': "./goa.jpg"
   }
 
 
@@ -116,11 +122,14 @@ export default function Profile() {
         loading ? <Loader /> 
         :
           nfts && nfts.map((nft, index) => {
+            const oslink = `https://testnets.opensea.io/assets/mumbai/${NFT_CONTRACT_ADDRESS}/${nft.id}`
+            console.log(nft.id)
             return (
               <div className={styles.card} key={index}>
                 {/* <p className={styles.desc}>{nft['description']}</p> */}
                 <img className={styles.nft} src={imagesObject[nft.name]} alt="nft" />
                 <span className={styles.name}>{nft.name}</span>
+                <span><Link href={oslink}><a className={styles.openlink} target="_blank">OpenSea Link 🔗</a></Link></span>
                 {/* <details className={styles.carousel}>
                   <summary>Description</summary>
                   <p>{nft['description']}</p>

@@ -27,7 +27,7 @@ export default function About() {
           <h2>Why we built it? 🚀</h2>
           <p>
           Whenever we travel, we remember the amazing experiences we&apos;ve had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler&apos;s quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
-          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title &qout;Travel ninja&quot; and its perks for the crazy travels who would able to Mint all the NFTs first.
+          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title &quot;Travel ninja&quot; and its perks for the crazy travels who would able to Mint all the NFTs first.
           </p>
         </div>
       </section>
@@ -35,7 +35,7 @@ export default function About() {
         <h2>Our Team 🫂</h2>
         <span className={styles.teamdes}>The journey of building with this beautiful has been the most blissful, the efforts, passion and drive of each and every member drives the other.</span>
         <div className={styles.team}>
-          {/* Vatsal */}
+          {/* Vatsal 3/3 */}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/Vatsal.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Vatsal Awadhiya</span>
@@ -46,26 +46,26 @@ export default function About() {
               <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-          {/* Aayush */}
+          {/* Aayush 3/3 */}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/Aayush.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Aayush Gupta</span>
             <span className={styles.job}>Smart Contract Developer ✏️</span>
             <span className={styles.links}>
-              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
-              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
-              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+              <Link href="https://twitter.com/Aayush_gupta_ji"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/AAYUSH-GUPTA-coder"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/aayush-gupta-20023b183/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-          {/* Anish */}
+          {/* Anish 2/3 */}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/Anish.png' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Anish Jain</span>
             <span className={styles.job}>Backend 🛠️</span>
             <span className={styles.links}>
-              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
-              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
-              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+              <Link href="https://twitter.com/itsanishjain"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/itsanishjain"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/anish-jain-a401501b5/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
           {/* Abbas */}
@@ -74,20 +74,20 @@ export default function About() {
             <span className={styles.name}>Abbas Khan</span>
             <span className={styles.job}>Content Writing 📜</span>
             <span className={styles.links}>
-              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
-              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
-              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+              <Link href="https://twitter.com/KhanAbbas201"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/Abbas-Khann"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/abbas-khan-033802222"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-          {/* Yash */}
+          {/* Yash 3/3 */}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/yash4.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Yash Solanki</span>
             <span className={styles.job}>UI Design 🖌️</span>
             <span className={styles.links}>
-              <Link href="https://twitter.com/theVatsal_eth"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
-              <Link href="https://github.com/theVatsal-eth"><a target="_blank" className={styles.github}>Github</a></Link>
-              <Link href="https://www.linkedin.com/in/vatsal-awadhiya/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
+              <Link href="https://twitter.com/YashSolanki_"><a target="_blank" className={styles.twitter}>Twitter</a></Link>
+              <Link href="https://github.com/yashsolanki22"><a target="_blank" className={styles.github}>Github</a></Link>
+              <Link href="https://www.linkedin.com/in/yash-solanki-2a4810189/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
 
