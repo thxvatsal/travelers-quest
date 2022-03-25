@@ -27,7 +27,7 @@ export default function About() {
           <h2>Why we built it? 🚀</h2>
           <p>
           Whenever we travel, we remember the amazing experiences we&apos;ve had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler&apos;s quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
-          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title "Travel ninja" and its perks for the crazy travels who would able to Mint all the NFTs first.
+          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title &qout;Travel ninja&quot; and its perks for the crazy travels who would able to Mint all the NFTs first.
           </p>
         </div>
       </section>
