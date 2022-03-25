@@ -110,7 +110,7 @@ export default function Profile() {
       <Nav />
       <ToastContainer />
       <div className={styles.container}>
-          <span>Your NFT's 🎉</span>
+          <span>Your NFTs 🎉</span>
           <div className={styles.inner}>
       { 
         loading ? <Loader /> 

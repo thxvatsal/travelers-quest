@@ -7,7 +7,7 @@ export default function Card(props) {
   return (
     <div className={styles.card}>
       <div className={styles.image} >
-        <Image src={source} layout="fill" />
+        <Image src={source} layout="fill" alt=""/>
       </div>
       <div className={styles.details}>
         <h2>{city}</h2>

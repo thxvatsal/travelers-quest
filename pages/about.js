@@ -19,15 +19,15 @@ export default function About() {
         <div className={styles.sect}>
           <h2>What is Traveler&apos;s Quest? 🧐</h2>
           <p>
-          Traveler's quest is a project that adds a digital proof as a sign of a memory of being in that place. We have NFTs available and can only be minted if you are in that particular place and the way we do it is by having the geolocation value. <br />
-          Traveling has always been fascinating and a fun adventure to have and now with traveler quest's feature we could also add capabilities of private access communities and much more that comes with integration of NFTs.
+          Traveler&apos;s quest is a project that adds a digital proof as a sign of a memory of being in that place. We have NFTs available and can only be minted if you are in that particular place and the way we do it is by having the geolocation value. <br />
+          Traveling has always been fascinating and a fun adventure to have and now with traveler quest&apos;s feature we could also add capabilities of private access communities and much more that comes with integration of NFTs.
           </p>
         </div>
         <div className={styles.sect}>
           <h2>Why we built it? 🚀</h2>
           <p>
-          Whenever we travel, we remember the amazing experiences we've had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler's quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
-          But hey, That's not where Traveler's quest ends. To reward you for your love for traveling, we have a special title "Travel ninja" and its perks for the crazy travels who would able to Mint all the NFTs first.
+          Whenever we travel, we remember the amazing experiences we&apos;ve had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler&apos;s quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
+          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title "Travel ninja" and its perks for the crazy travels who would able to Mint all the NFTs first.
           </p>
         </div>
       </section>
@@ -37,7 +37,7 @@ export default function About() {
         <div className={styles.team}>
           {/* Vatsal */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/team/Vatsal.jpg' height="400px" width="400px" /></div>
+            <div className={styles.img}><Image src='/team/Vatsal.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Vatsal Awadhiya</span>
             <span className={styles.job}>Frontend 🎨</span>
             <span className={styles.links}>
@@ -48,7 +48,7 @@ export default function About() {
           </div>
           {/* Aayush */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/team/Aayush.jpg' height="400px" width="400px" /></div>
+            <div className={styles.img}><Image src='/team/Aayush.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Aayush Gupta</span>
             <span className={styles.job}>Smart Contract Developer ✏️</span>
             <span className={styles.links}>
@@ -59,7 +59,7 @@ export default function About() {
           </div>
           {/* Anish */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/team/Anish.png' height="400px" width="400px" /></div>
+            <div className={styles.img}><Image src='/team/Anish.png' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Anish Jain</span>
             <span className={styles.job}>Backend 🛠️</span>
             <span className={styles.links}>
@@ -70,7 +70,7 @@ export default function About() {
           </div>
           {/* Abbas */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/team/abbas2.jpg' height="400px" width="400px" /></div>
+            <div className={styles.img}><Image src='/team/abbas2.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Abbas Khan</span>
             <span className={styles.job}>Content Writing 📜</span>
             <span className={styles.links}>
@@ -81,7 +81,7 @@ export default function About() {
           </div>
           {/* Yash */}
           <div className={styles.member}>
-            <div className={styles.img}><Image src='/team/yash4.jpg' height="400px" width="400px" /></div>
+            <div className={styles.img}><Image src='/team/yash4.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Yash Solanki</span>
             <span className={styles.job}>UI Design 🖌️</span>
             <span className={styles.links}>
