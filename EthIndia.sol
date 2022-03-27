@@ -6,13 +6,13 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract TravelQuest is ERC2771Context, ERC1155, Ownable {  
-    uint256[] supplies = [50,50,50,50,50,50,150];
-    uint256[] minted = [0,0,0,0,0,0,0];
+contract TravelQuest is ERC2771Context, ERC1155, Ownable { 
+    uint256[] public supplies = [50,50,50,50,50,50,150];
+    uint256[] public minted = [0,0,0,0,0,0,0];
     mapping(uint256 => mapping(address => bool)) public member;
 
     constructor(address trustedForwarder) 
-        ERC1155("https://ipfs.io/ipfs/QmVjF1MykXoZGABaHqSTpxrVzb2jxczwbqen52k18tLFMk/{id}.json")
+        ERC1155("ipfs://QmSCFe5vvoPsSpyHZpGAW78GJ4bAuDcySCV9UnMm7B69iS/{id}.json")
         ERC2771Context(trustedForwarder) 
         {
         }
@@ -22,7 +22,7 @@ contract TravelQuest is ERC2771Context, ERC1155, Ownable {
         require(_tokenId <= supplies.length-1,"NFT does not exist");
         return string(
         abi.encodePacked(
-            "https://ipfs.io/ipfs/QmVjF1MykXoZGABaHqSTpxrVzb2jxczwbqen52k18tLFMk/",
+            "ipfs://QmSCFe5vvoPsSpyHZpGAW78GJ4bAuDcySCV9UnMm7B69iS/",
             Strings.toString(_tokenId),
             ".json"
         )
@@ -49,6 +49,7 @@ contract TravelQuest is ERC2771Context, ERC1155, Ownable {
     function totalNftMinted(uint256 _tokenId) public view returns(uint256){
         return minted[_tokenId];
     }
+    
 
     function _msgSender() internal view override(Context, ERC2771Context) returns (address){
         return ERC2771Context._msgSender();
@@ -57,5 +58,4 @@ contract TravelQuest is ERC2771Context, ERC1155, Ownable {
     function _msgData() internal view override(Context, ERC2771Context) returns (bytes calldata){
         return ERC2771Context._msgData();
     }
-
 }
