@@ -322,7 +322,7 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.hero}>
           <h1>Traveler&apos;s Quest</h1>
-          <p>Let the quest to travel and exploring the world take a big leap into the another dimension with the support of NFTs and community. Showcase your achievements, exploration and get more closer with people who share similar interests and craziness all at one Place </p>
+          <p>Let the quest to travel and exploring the world take a big leap into the another dimension with the support of NFTs and community. Showcase your achievements, exploration and get more closer with people who share similar interests and craziness all at one Place! </p>
         </div>
 
         <div className={styles.slider}><img style={{
