@@ -22,13 +22,13 @@ import { Biconomy } from "@biconomy/mexa";
 
 // let TravellContract;
 
-const items = [
+const itemlist = [
   {
     source: "/agra.jpg",
     city: "Agra",
     details:
       "Agra is a popular tourist destination as it is home to one of the 7 wonders of the world, the Taj Mahal. It is a sneak peek into the architectural history and legacy of the Mughal empire with two other UNESCO World Heritage Sites Agra Fort and Fatehpur Sikri. History, architecture, romance all together create the magic of Agra, and hence, makes for a must-visit for anyone living in or visiting India.",
-    nftclaimed: 10,
+    nftclaimed: 0,
   },
   {
     source: "/delhi.jpg",
@@ -78,13 +78,21 @@ const items = [
 
 export default function Home() {
 
-  // console.log(Web3Modal.onClose)
+  //Hooks
   const [walletConnected, setWalletConnected] = useState(false)
   const [Signer, setSigner] = useState()
   const [loading, setLoading] = useState();
-
+  // const [ signerObj, setSignerObj ] = useState();
+  const [items, setItems] = useState(itemlist);
+  // const [contract, setContract] = useState();
 
   const web3ModalRef = useRef()
+
+  // Items list
+  
+
+ 
+  // console.log(Web3Modal.onClose)
   // console.log(web3ModalRef.current)
 
 
@@ -107,15 +115,15 @@ export default function Home() {
     }
   };
 
-  let biconomy;
   // getting signer or provider
   const getProviderOrSigner = async (needSigner = true) => {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    // biconomy = new Biconomy(provider, { apiKey: process.env.NEXT_PUBLIC_BICONOMY_API, debug: true });
+    //! Tried to implement biconomy to make gasless minting. Doubts unresolved regarding frontend configuration.
 
-    // const web3Provider = new providers.Web3Provider(biconomy);
+    // *biconomy = new Biconomy(provider, { apiKey: process.env.NEXT_PUBLIC_BICONOMY_API, debug: true });
+    // *const web3Provider = new providers.Web3Provider(biconomy);
 
     const { chainId } = await web3Provider.getNetwork()
 
@@ -128,8 +136,7 @@ export default function Home() {
 
     // set the Signer to localStorage
     localStorage.setItem('userAccount', userAccount);
-
-
+    // setSignerObj(signer)
     return signer;
   }
   const providerOptions = {
@@ -146,6 +153,7 @@ export default function Home() {
       });
       await getProviderOrSigner();
       setWalletConnected(true);
+
     } catch (err) {
       console.error(err)
       checkErrorTypeAndNotify(err);
@@ -159,13 +167,13 @@ export default function Home() {
 
       const signer = await getProviderOrSigner(true);
 
-      const TravellContract = new Contract(
+      const TravelContract = new Contract(
         NFT_CONTRACT_ADDRESS,
         NFT_CONTRACT_ABI,
         signer
       );
 
-      const tx = await TravellContract.mint(tokenId);
+      const tx = await TravelContract.mint(tokenId);
       await tx.wait();
       toast("You successfully minted your NFT")
 
@@ -177,7 +185,10 @@ export default function Home() {
 
   useEffect(() => {
     if (!walletConnected) {
-      connectWallet();
+      connectWallet(); 
+      for (let i = 0; i < itemlist.length; i++) {
+        fetchNftClaimed(i)
+      }
     }
   }, [])
 
@@ -199,60 +210,95 @@ export default function Home() {
     await web3ModalRef.current.clearCachedProvider()
     localStorage.setItem('userAccount', '')
     setWalletConnected(false)
-    console.log(2, web3ModalRef)
   }
 
   const checkPosition = async (tokenId) => {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((coords) => {
-        console.log(coords)
+        console.log("Coordinates fetched!")
         checkAdd(coords)
       });
     } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      toast("Please allow location access for minting NFT.")
     }
     const checkAdd = async (position) => {
-      console.log(position.coords.latitude)
-      const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
+      if (tokenId === (items.length -1)) {
+        toast(`💡 Fun Fact: Ethernals NFTs can be minted from anywhere in the world!`)
+        await mintNFT(tokenId)
+        setLoading()
+      }
+      else {
+        try {
+          console.log("Checking the city of the address.")
+          toast("Checking your city, please wait.")
+          setLoading(tokenId)
+          const key = process.env.NEXT_PUBLIC_RAPID_API_KEY
+          const res = await fetch(
+            `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
+            {
+              method: "GET",
+              headers: {
+                "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
+                "x-rapidapi-key":
+                  `${key}`,
+              },
+            }
+          );
+          console.log("API called successfully!")
+          
+          const { results } = await res.json()
 
-      console.log("DFSADFADSFADSFADSFAs", key);
+          console.log("Results extracted.")
+          
+          const add = results.find(add => {
+            if (add.types[0] == "locality") {
+              console.log("Location City fetched.")
+              return add.address_components[0].long_name
+            }
+          })
 
-      try {
-        setLoading(true)
-        const res = await fetch(
-          `https://google-maps-geocoding.p.rapidapi.com/geocode/json?latlng=${position.coords.latitude}%2C${position.coords.longitude}&language=en`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": "google-maps-geocoding.p.rapidapi.com",
-              "x-rapidapi-key":
-                `${key}`,
-            },
+          if (add.address_components[0].long_name === items[tokenId].city) {
+            // setLoading(true)
+            await mintNFT(tokenId)
+            // setLoading(false)
+            setLoading()
+          } else {
+            toast(`We are detecting you at ${add.address_components[0].long_name}, visit ${items[tokenId].city} to mint the NFT!`)
+            setLoading()
           }
-        );
-        console.log(res)
-        const { results } = await res.json()
-        console.log(results, ">>>>>>>>>>>>>>>> RESUELTSSSSS")
-        const add = results.find(add => {
-          if (add.types[0] == "locality") {
-            console.log(add.address_components[0].long_name)
-            return add.address_components[0].long_name
-          }
-        })
-        console.log('address', add.address_components[0].long_name)
-        if (add.address_components[0].long_name) {
-          // setLoading(true)
-          await mintNFT(tokenId)
-          // setLoading(false)
-          setLoading(false)
+        }
+        catch (error) {
+          console.log(error)
+          checkErrorTypeAndNotify(error)
+          setLoading()
         }
       }
-      catch (error) {
-        console.log(error)
-        checkErrorTypeAndNotify(error)
-      }
     }
+  }
+  // console.log(1,fetchNftClaimed(0))
+  async function fetchNftClaimed (index) {
+    const signer = await getProviderOrSigner();
+
+    const TravelContract = new Contract(
+      NFT_CONTRACT_ADDRESS,
+      NFT_CONTRACT_ABI,
+      signer,
+    );
+    // setContract(TravelContract)
+    const bigNumber = await TravelContract.totalNftMinted(index)
+    console.log(2,bigNumber)
+    const claimed = await bigNumber.toNumber()
+    console.log(3,claimed)
+    // items[index].nftclaimed = claimed
+    let itemslist = [...items];
+    let item = itemslist[index];
+    item.nftclaimed = claimed;
+    itemslist[index] = item
+    setItems(itemslist)
+    console.log(itemslist)
+
+    return claimed
   }
 
   return (
@@ -305,7 +351,7 @@ export default function Home() {
 
 
       {
-        items.map((item, index) => {
+        items && items.map((item, index) => {
           return (
             index % 2 != 0 ? (
               <NFTholder
@@ -339,7 +385,7 @@ export default function Home() {
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
-                      onClick={() => mintNFT(index)} />
+                      onClick={() => checkPosition(index)} />
                   ) : (
                     <Loader />
                   )

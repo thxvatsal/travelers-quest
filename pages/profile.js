@@ -13,7 +13,7 @@ const endpoint = `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUB
 
 export default function Profile() {
 
-  const [nfts, setNfts] = useState();
+  const [ nfts, setNfts ] = useState();
   const [ loading, setLoading ] = useState(true)
 
 
@@ -51,21 +51,19 @@ export default function Profile() {
           const response = await fetch(
             `${endpoint}/getNFTMetadata?contractAddress=${NFT.contract.address}&tokenId=${NFT.id.tokenId}`
           )
+          console.log(response)
           const jsonData = await response.json();
-          console.log(jsonData, ">>>>>>>>>>>>")
-          console.log("metadata", jsonData.metadata, jsonData.id.tokenId);
           const b = {
             name: jsonData.metadata.name,
             description: jsonData.metadata.description,
-            image: jsonData.media[0].raw,
             id: jsonData.id.tokenId.charAt(3),
           }
           a.push(b);
           // results.push(data.metadata);
-          console.log("LAST MAN STANDING")
+          console.log("Metadata Acquired from Alchemy")
         }
         catch (error) {
-          console.log("Error in fetching NFTs", error)
+          console.log("Error in acquiring metadata from Alchemy API", error)
         }
       })
     )
@@ -74,22 +72,24 @@ export default function Profile() {
 
   const fetchNFTs = async (owner, contractAddress) => {
     const data = await getAddressNFTs(owner, contractAddress);
-    console.log("Total NFTs", data.ownedNfts.length)
-    if (data.ownedNfts.length) {
-      console.log("NFTs FOR USER");
+    console.log("Total NFTs owned: ", data.ownedNfts.length)
+    if (data.ownedNfts.length > 0) {
       let results = await getNFTsMetadata(data.ownedNfts);
-      // console.log("NFTs@@@@@@@@@@@@@@@@@@@@@@", results);
+      console.log("Results Acquired");
       setNfts(results);
       setLoading(false)
 
-    } else {
+    } else if (data.ownedNfts.length == 0) {
       console.log("NO NFTS FOUND");
       toast("No NFT found :(")
       setLoading(false)
     }
+    else {
+      console.log("API Error 😞")
+    }
   };
 
-
+  
 
   useEffect(() => {
     // get userAccount from localStorage
@@ -106,7 +106,8 @@ export default function Profile() {
     'Mumbai': "./mumbai.jpg",
     'Manali' : "./manali.jpg",
     'Jaipur': "./jaipur.jpg",
-    'Goa': "./goa.jpg"
+    'Goa': "./goa.jpg",
+    'Ethernals': "./ethernals.jpg"
   }
 
 
@@ -124,16 +125,15 @@ export default function Profile() {
           nfts && nfts.map((nft, index) => {
             const oslink = `https://testnets.opensea.io/assets/mumbai/${NFT_CONTRACT_ADDRESS}/${nft.id}`
             console.log(nft.id)
+            if (nft.name == undefined) {
+              toast("Inappropriate data from Alchemy API. Try again. :(")
+            }
             return (
               <div className={styles.card} key={index}>
                 {/* <p className={styles.desc}>{nft['description']}</p> */}
                 <img className={styles.nft} src={imagesObject[nft.name]} alt="nft" />
                 <span className={styles.name}>{nft.name}</span>
                 <span><Link href={oslink}><a className={styles.openlink} target="_blank">OpenSea Link 🔗</a></Link></span>
-                {/* <details className={styles.carousel}>
-                  <summary>Description</summary>
-                  <p>{nft['description']}</p>
-                </details> */}
               </div>
           )
         })
