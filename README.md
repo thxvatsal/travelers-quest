@@ -11,11 +11,14 @@ If you have any question or suggestion regarding our project. Consider joining o
 
 ## [Polygon]()
 
+Polygon is a “layer two” or “sidechain” scaling solution that runs alongside the Ethereum blockchain — allowing for speedy transactions and low fees. MATIC is the network’s native cryptocurrency, which is used for fees, staking, and more. You can buy or sell MATIC via exchanges like Coinbase. 
 
-### [Alchemy NFT API]
+
+### Alchemy NFT API
+Alchemy and their NFT API have been critical in bringing Web 3.0 to our creative community here at Behance. Their simple unified APIs abstract away some of the complexities of blockchain technology and helped us move faster.
 
 
-### [IPFS]
+### IPFS
 Filecoin IPFS is a permanent and a decentralized storage network designed to store data.
 
 Our project also uses IPFS for storing the data once an NFT is minted for that particular tribe. Which means the NFT data is parmanent and can't be deleted. Minted NFT's can also be seen on opensea by clicking on link under your minted NFT card. We have used NFT.storage Javascript client library for the storage of our data.
