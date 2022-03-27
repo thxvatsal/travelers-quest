@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 
 export default function About() {
   const contractLink = `https://mumbai.polygonscan.com/address/${NFT_CONTRACT_ADDRESS}`
+  const discord = "https://discord.gg/gB3Bkzrh"
   return (
     <>
       <Nav />
@@ -26,8 +27,7 @@ export default function About() {
         <div className={styles.sect}>
           <h2>Why we built it? 🚀</h2>
           <p>
-          Whenever we travel, we remember the amazing experiences we&apos;ve had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler&apos;s quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.<br />
-          But hey, that&apos;s not where Traveler&apos;s Quest ends. To reward you for your love for traveling, we have a special title &quot;Travel ninja&quot; and its perks for the crazy travels who would able to Mint all the NFTs first.
+          Whenever we travel, we remember the amazing experiences we&apos;ve had over there. Taking this idea forward, We created this project where we have added NFTs as a symbol/memory. With Traveler&apos;s quest, not only will you be able to keep the NFT as a sign of that particular place, but in the upcoming updates you will also be able to get access to private communities that will open the doors for you to meet more people who share the same interests, hangout and exchange ideas with people around the world.
           </p>
         </div>
       </section>
@@ -57,7 +57,7 @@ export default function About() {
               <Link href="https://www.linkedin.com/in/aayush-gupta-20023b183/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-          {/* Anish 2/3 */}
+          {/* Anish 3/3 */}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/Anish.png' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Anish Jain</span>
@@ -68,7 +68,7 @@ export default function About() {
               <Link href="https://www.linkedin.com/in/anish-jain-a401501b5/"><a target="_blank" className={styles.linkedin}>LinkedIn</a></Link>
             </span>
           </div>
-          {/* Abbas */}
+          {/* Abbas 3/3*/}
           <div className={styles.member}>
             <div className={styles.img}><Image src='/team/abbas2.jpg' height="400px" width="400px" alt="" /></div>
             <span className={styles.name}>Abbas Khan</span>
@@ -95,6 +95,7 @@ export default function About() {
         </div>
         <span className={styles.wagmi}>#WAGMI🚀</span>
         <span className={styles.contract}>Contract Address 📄 : <Link href={contractLink}><a target="_blank">{NFT_CONTRACT_ADDRESS}</a></Link></span>
+        <span className={styles.discord}><Link href={discord}><a target="_blank">Click here to join the herd at Discord! 🚀</a></Link></span>
       </section>
       <Footer />
     </>
