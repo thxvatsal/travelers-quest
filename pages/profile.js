@@ -111,9 +111,7 @@ export default function Profile() {
     'Ethernals': "./ethernals.jpg"
   }
 
-  if (nfts) {
-    toast("Inappropriate data from Alchemy API. Try again. :(")
-  }
+
 
   return (
     <div>
@@ -128,6 +126,9 @@ export default function Profile() {
           nfts && nfts.map((nft, index) => {
             const oslink = `https://testnets.opensea.io/assets/mumbai/${NFT_CONTRACT_ADDRESS}/${nft.id}`
             console.log(nft.id)
+            if (nft.name == undefined) {
+              toast("Inappropriate data from Alchemy API. Try again. :(")
+            }
             return (
               <div className={styles.card} key={index}>
                 {/* <p className={styles.desc}>{nft['description']}</p> */}
