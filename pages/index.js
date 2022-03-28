@@ -258,7 +258,14 @@ export default function Home() {
             }
           })
 
-          if (add.address_components[0].long_name === items[tokenId].city) {
+          const state = results.find(add => {
+            if (add.types[0] == "administrative_area_level_1") {
+              console.log("Location City fetched.")
+              return add.address_components[0].long_name
+            }
+          })
+
+          if (add.address_components[0].long_name === items[tokenId].city || state.address_components[0] == items[tokenId].city) {
             // setLoading(true)
             await mintNFT(tokenId)
             // setLoading(false)
