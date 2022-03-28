@@ -366,7 +366,7 @@ export default function Home() {
                     <Button
                       className={styles.mintbtn}
                       text="Mint"
-                      onClick={() => mintNFT(index)} />
+                      onClick={() => checkPosition(index)} />
                   ) : (
                     <Loader />
                   )
