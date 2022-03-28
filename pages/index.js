@@ -36,42 +36,42 @@ const itemlist = [
     details: "Dolor dolor consectetur id aliquip laborum et. Consequat velit duis reprehenderit culpa aute aliqua laborum voluptate eiusmod. Aliquip et commodo nostrud et laborum cillum enim ullamco in enim irure qui.",
     details:
       "A symbol of the India's rich past and thriving present. The capital of India, Delhi is a cosmopolitan city with a historic old Delhi and the modern New Delhi. From historical monuments to crowded shopping malls, from an extensive network of the modern metro system to Delhi University campus, Dilli has multiple personalities and is considered to be the city with a heart.",
-    nftclaimed: 20,
+    nftclaimed: 0,
   },
   {
     source: "/manali.jpg",
     city: "Manali",
     details:
       "A gift of the Himalayas to the world, Manali is a beautiful township nestled in the picturesque Beas River valley. It is a rustic enclave known for its cool climate and snow-capped mountains. Manali cocooned in its rich cultural heritage and age-old traditions is now one of the most popular destinations of India. The place is a classic blend of peace and tranquility which makes it a haven for nature lovers and adventure enthusiasts, who want to get off the main tourist trails and experience nature up close.",
-    nftclaimed: 10,
+    nftclaimed: 0,
   },
   {
     source: "/mumbai.jpg",
     city: "Mumbai",
     details:
       "Mumbai, often referred as “the city of dreams” for all the right reasons, is a place that every traveller must visit. Mumbai presents a unique experience that is unmatched to any other destination. Mumbai is the city of aspirations, power, wealth, glamour and nightlife along with stretches of shimmering beaches, caves, magnificent architecture, religious sites and a mouth-watering cuisine. With all this exciting and varied recreational opportunities Mumbai offers a wholesome holiday experience.",
-    nftclaimed: 10,
+    nftclaimed: 0,
   },
   {
     source: "/goa.jpg",
     city: "Goa",
     details:
       "Goa is India's smallest state and unlike any other, known for its endless beaches, stellar nightlife, eclectic seafood, world-heritage listed architecture. Goa has one of the best nightlife in India with trendy bars, beach shacks, elegant cafes and many clubs and discotheques.In Old Goa, the beautiful Basilica of Bom Jesus is a UNESCO World Heritage Site and a fine example of baroque architecture.",
-    nftclaimed: 10,
+    nftclaimed: 0,
   },
   {
     source: "/jaipur.jpg",
     city: "Jaipur",
     details:
       "Jaipur holds the distinction of being the first planned city of India. Renowned globally for its coloured gems, the capital city of Rajasthan combines the allure of its ancient history with all the advantages of a metropolis. Spend your days exploring City Palace, Hawa Mahal, and Amber and Jaigarh forts. And if you're looking for a unique souvenir, head to one of the bazaars, where you can pick up a pair of camel-leather slippers.",
-    nftclaimed: 15,
+    nftclaimed: 0,
   },
   {
     source: "/ethernals.jpg",
     city: "Ethernals",
     details:
       "Supercharge yourself for ETHernals: the first ETHIndia Online hackathon of 2022! You are a part of the amazing community who are changing the world for better. On the way to becoming an ETHernal: You have become a better developer, have an Unforgettable Digital Experience in the ETHernals Metaverse and probably have exclusive Schwags to show off.",
-    nftclaimed: 10,
+    nftclaimed: 0,
   },
 ];
 
